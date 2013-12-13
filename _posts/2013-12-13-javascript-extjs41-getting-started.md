@@ -126,7 +126,14 @@ When you unzip the Ext JS 4 download, you will see the following files:
     some url example:
     http://localhost/helloext/extjs/src/container/Container.js?_dc=1386946297152
     http://localhost/helloext/extjs/src/app/Controller.js?_dc=1386946297159
-    
+    why load file under src folder:
+    Loader.setConfig({
+        enabled: true,
+        disableCaching: true,
+        paths: {
+            'Ext': path + 'src'
+        }
+    }); 
 
 ext.js - same as ext-debug.js but minified for use in production. Meant to be used in combination with your application's app-all.js file. (see section 3)
 
