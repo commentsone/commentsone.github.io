@@ -129,8 +129,30 @@ When you unzip the Ext JS 4 download, you will see the following files:
     
 
 ext.js - same as ext-debug.js but minified for use in production. Meant to be used in combination with your application's app-all.js file. (see section 3)
+
+    some url example:
+    http://localhost/helloext/extjs/src/container/Container.js?_dc=1386946297152
+    http://localhost/helloext/extjs/src/app/Controller.js?_dc=1386946297159
+
+
 ext-all-debug.js - This file contains the entire Ext JS library. This can be helpful for shortening your initial learning curve, however ext-debug.js is preferred in most cases for actual application development.
+
+    some url example(only four file,relating extjs only two):
+    http://localhost/helloext/index.html
+    http://localhost/helloext/extjs/resources/css/ext-all.css
+    http://localhost/helloext/extjs/ext-all-debug.js
+    http://localhost/helloext/app.js    
+
 ext-all.js - This is a minified version of ext-all-debug.js that can be used in production environments, however, it is not recommended since most applications will not make use of all the classes that it contains. Instead it is recommended that you create a custom build for your production environment as described in section 3.
+    
+    url:
+    http://localhost/helloext/index.html
+    http://localhost/helloext/extjs/resources/css/ext-all.css
+    http://localhost/helloext/extjs/ext-all.js
+    http://localhost/helloext/app.js
+
+
+    
 3. Deployment
 
 The newly-introduced Sencha SDK Tools (download here) makes deployment of any Ext JS 4 application easier than ever. The tools allow you to generate a manifest of all JavaScript dependencies in the form of a JSB3 (JSBuilder file format) file, and create a custom build containing only the code that your application needs.
