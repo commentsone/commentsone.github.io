@@ -120,7 +120,14 @@ This will ensure that the file containing the code for Ext.container.Viewport is
 2.3 Library Inclusion methods
 When you unzip the Ext JS 4 download, you will see the following files:
 
-ext-debug.js - This file is only for use during development. It provides the minimum number of core Ext JS classes needed to get up and running. Any additional classes should be dynamically loaded as separate files as demonstrated above.
+
+- ext-debug.js - This file is only for use during development. It provides the minimum number of core Ext JS classes needed to get up and running. Any additional classes should be dynamically loaded as separate files as demonstrated above.
+
+    some url example:
+    http://localhost/helloext/extjs/src/container/Container.js?_dc=1386946297152
+    http://localhost/helloext/extjs/src/app/Controller.js?_dc=1386946297159
+    
+
 ext.js - same as ext-debug.js but minified for use in production. Meant to be used in combination with your application's app-all.js file. (see section 3)
 ext-all-debug.js - This file contains the entire Ext JS library. This can be helpful for shortening your initial learning curve, however ext-debug.js is preferred in most cases for actual application development.
 ext-all.js - This is a minified version of ext-all-debug.js that can be used in production environments, however, it is not recommended since most applications will not make use of all the classes that it contains. Instead it is recommended that you create a custom build for your production environment as described in section 3.
