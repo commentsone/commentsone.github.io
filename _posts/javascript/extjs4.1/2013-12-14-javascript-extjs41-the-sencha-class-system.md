@@ -123,13 +123,14 @@ Following this, our Person class becomes:
 With a tiny change and even less code, Ext.define immediately provides solutions to the challenges raised above:  
 
 - There’s no longer a need to care about namespace object existence. Ext.define handles that automatically.   
-- Simply by defining the class using the string class name, we’re no longer assigning the class reference directly to a variable. That way, the whole class creation process can be asynchronous, and the actual reference to the newly created class can be assigned to the provided namespace when it’s ready, at a later time.
-    Running multiple versions of the same class (also known as sandboxing) becomes trivial. The string class name can be changed to something else prior to value assignment. For example: the later-defined Ext.Button can be automatically rewritten to Ext4.Button so we can use an Ext JS 4.x button alongside an Ext JS 3.x button, without having to change a single line of code.
-    All classes can now be aware of their own names. As a result, you can retrieve the class name from within any class methods. All class methods can also have their full displayName signature. This enables much better debugging.
-    In short, unless you explicitly want to create anonymous classes, use Ext.define instead of new Ext.Class.
+- Simply by defining the class using the string class name, we’re no longer assigning the class reference directly to a variable. That way, the whole class creation process can be asynchronous, and the actual reference to the newly created class can be assigned to the provided namespace when it’s ready, at a later time.  
+- Running multiple versions of the same class (also known as sandboxing) becomes trivial. The string class name can be changed to something else prior to value assignment. For example: the later-defined Ext.Button can be automatically rewritten to Ext4.Button so we can use an Ext JS 4.x button alongside an Ext JS 3.x button, without having to change a single line of code. 
+- All classes can now be aware of their own names. As a result, you can retrieve the class name from within any class methods. All class methods can also have their full displayName signature. This enables much better debugging.  
 
-    Class Processors
-    The Sencha Class System is built on top of processors, which are divided into two groups: pre-processors and post-processors. Although the term “pre-processors” may sound complex, class pre-processors are much simpler than you may think. They are simply a set of “hooks” that run before that class is actually created and ready to be used. Let’s walk through what’s happening behind Ext.define at a high-level:
+In short, unless you explicitly want to create anonymous classes, use Ext.define instead of new Ext.Class.   
+
+##Class Processors
+The Sencha Class System is built on top of processors, which are divided into two groups: pre-processors and post-processors. Although the term “pre-processors” may sound complex, class pre-processors are much simpler than you may think. They are simply a set of “hooks” that run before that class is actually created and ready to be used. Let’s walk through what’s happening behind Ext.define at a high-level:  
 
 Iterate through the provided classMembers object and set them to the class prototype.
 During iteration, if there’s any “special” property such as: “extend”, “mixins”, “requires”, “config”, etc., process them through their corresponding pre-processors.
