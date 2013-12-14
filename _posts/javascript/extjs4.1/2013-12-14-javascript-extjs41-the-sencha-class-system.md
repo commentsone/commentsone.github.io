@@ -7,116 +7,129 @@ tags: []
 ---
 {% include JB/setup %}
 [FROM](http://www.sencha.com/learn/sencha-class-system)  
-The Sencha Class System was first introduced in Ext JS 4.0 and was a major step forward in making it easy to build object oriented JavaScript code. As a core part of the Sencha JavaScript platform, it’s now a shared component between Ext JS and Sencha Touch 2.  
+The Sencha Class System was first introduced in Ext JS 4.0 and was a major step forward in making it easy to build object oriented JavaScript code. As a core part of the Sencha JavaScript platform, it’s now a shared component between Ext JS and Sencha Touch 2.    
 
-Ext JS and Sencha Touch 2 use the class system internally to manage dependencies, make code more reusable as well as provide a rich set of features that are commonly found in other class-based programming languages. Developers writing code using Ext JS 4 and Touch 2 can leverage the class system to use the built-in APIs in the frameworks, as well as in their own code to create well structured object oriented JavaScript.
+Ext JS and Sencha Touch 2 use the class system internally to manage dependencies, make code more reusable as well as provide a rich set of features that are commonly found in other class-based programming languages. Developers writing code using Ext JS 4 and Touch 2 can leverage the class system to use the built-in APIs in the frameworks, as well as in their own code to create well structured object oriented JavaScript.  
 
-Creating a Class
-At the lowest level, creating a new class is as simple as instantiating Ext.Class:
+##Creating a Class
+At the lowest level, creating a new class is as simple as instantiating Ext.Class:  
 
-var Person = new Ext.Class({});
-The first argument for new Ext.Class is an object with key-value pairs representing the class members. A Person class with a name property and a walk method may look like this:
+    var Person = new Ext.Class({});
 
-var Person = new Ext.Class({
-    name: 'Mr. Unknown',
-    walk: function(steps) {
-        alert(this.name + ' is walking ' + steps + ' steps');
+The first argument for new Ext.Class is an object with key-value pairs representing the class members. A Person class with a name property and a walk method may look like this:  
+
+    var Person = new Ext.Class({
+        name: 'Mr. Unknown',
+        walk: function(steps) {
+            alert(this.name + ' is walking ' + steps + ' steps');
+        }
+    });
+
+Let’s write a small piece of code to test the above Person class:  
+
+    var person = new Person();
+    person.walk(10); // alerts "Mr. Unknown is walking 10 steps"
+    
+###Class Constructor
+A class constructor is the class method that gets invoked immediately when a new instance of that class is created. Adding a constructor is as trivial as adding it as a class member at definition time.   
+
+    var Person = new Ext.Class({
+        name: 'Mr. Unknown',
+     
+        constructor: function(name) {
+            this.name = name;
+     
+            return this;
+        },
+     
+        walk: function(steps) {
+            alert(this.name + ' is walking ' + steps + ' steps');
+        }
+    });
+     
+    var jacky = new Person('Jacky');
+    jacky.walk(10); // alerts "Jacky is walking 10 steps"
+
+###Class Namespacing
+Namespacing keeps your code well-organized, which translates directly into maintainability and reuseablity. Think of namespacing as categorizing or grouping your classes. Multiple grouping criteria can be used. The suggested namespacing convention is as follows:   
+
+    <Company / Product ID / Organization>.<Functionality Group(s)>.<Class Name>
+
+Some examples of good namespaces:  
+
+    Ext.chart.Label
+    Ext.data.writer.Xml
+    MyCompany.util.VideoConverter
+    
+From this point forward, we will namespace all our sample classes in this article under My.sample. Let’s start with the same old Person class:  
+
+    Ext.ns('My.sample');
+    My.sample.Person = new Ext.Class({ /*…*/ });
+
+Notice the use of Ext.ns. It’s a shorthand to make it easier to work with nested object hierarchies. This method ensures the namespace objects exist before value assignment, a verbose version of which would look something like this:  
+
+    if (!Ext.isObject(My)) {
+        My = {};
     }
-});
-Let’s write a small piece of code to test the above Person class:
-
-var person = new Person();
-person.walk(10); // alerts "Mr. Unknown is walking 10 steps"
-Class Constructor
-A class constructor is the class method that gets invoked immediately when a new instance of that class is created. Adding a constructor is as trivial as adding it as a class member at definition time.
-
-var Person = new Ext.Class({
-    name: 'Mr. Unknown',
- 
-    constructor: function(name) {
-        this.name = name;
- 
-        return this;
-    },
- 
-    walk: function(steps) {
-        alert(this.name + ' is walking ' + steps + ' steps');
+     
+    if (!Ext.isObject(My.sample)) {
+        My.sample = {};
     }
-});
- 
-var jacky = new Person('Jacky');
-jacky.walk(10); // alerts "Jacky is walking 10 steps"
-Class Namespacing
-Namespacing keeps your code well-organized, which translates directly into maintainability and reuseablity. Think of namespacing as categorizing or grouping your classes. Multiple grouping criteria can be used. The suggested namespacing convention is as follows:
-
-<Company / Product ID / Organization>.<Functionality Group(s)>.<Class Name>
-
-Some examples of good namespaces:
-
-Ext.chart.Label
-Ext.data.writer.Xml
-MyCompany.util.VideoConverter
-From this point forward, we will namespace all our sample classes in this article under My.sample. Let’s start with the same old Person class:
-
-Ext.ns('My.sample');
-My.sample.Person = new Ext.Class({ /*…*/ });
-Notice the use of Ext.ns. It’s a shorthand to make it easier to work with nested object hierarchies. This method ensures the namespace objects exist before value assignment, a verbose version of which would look something like this:
-
-if (!Ext.isObject(My)) {
-    My = {};
-}
- 
-if (!Ext.isObject(My.sample)) {
-    My.sample = {};
-}
- 
-My.sample.Person = new Ext.Class({ /*…*/ });
-Class Files Organization
-Keeping your class files organized also helps with reusability and makes it easier for other developers to understand the structure of your project. As a best practice, we recommend:
+     
+    My.sample.Person = new Ext.Class({ /*…*/ });
+    
+###Class Files Organization
+Keeping your class files organized also helps with reusability and makes it easier for other developers to understand the structure of your project. As a best practice, we recommend:   
 
 There should be only one class per JavaScript file
-The file name should directly map to the class name. For example: My.cool.Class is located inside My/cool/Class.js
-Creating a Class — Revisited
-Let’s go back to the way we have been defining our class so far:
+The file name should directly map to the class name. For example: My.cool.Class is located inside My/cool/Class.js  
 
-Ext.ns('My.sample');
-My.sample.Person = new Ext.Class({ /*…*/ });
-It’s time to dig a little deeper to see what is technically going on here. We are creating an anonymous class with new Ext.Class, then assigning it to the Person property of the My.sample object. It works well but has limitations:
+###Creating a Class — Revisited
+Let’s go back to the way we have been defining our class so far:  
 
-We have to manually ensure the namespace object exists before value assignment, for every single class being created.
-What if our class depends on some other classes existing first? A typical example would be a parent-child relationship whereby the child class needs the parent class to exist beforehand. In such case, the parent class may need to be retrieved asynchronously, and the child class is not yet ready at definition time.
-What if you need to run two or more different versions of the same class (all of which have the same name) on the same application without having them overwrite each other?
-What if you want to retrieve the current name of the class from within its own methods for better debugging capability. For example, error messages could have the class name from where they originate. Methods can have their full name in the stack-trace via Function.displayName instead of just ‘anonymous’
+    Ext.ns('My.sample');
+    My.sample.Person = new Ext.Class({ /*…*/ });
+
+It’s time to dig a little deeper to see what is technically going on here. We are creating an anonymous class with new Ext.Class, then assigning it to the Person property of the My.sample object. It works well but has limitations:   
+
+- We have to manually ensure the namespace object exists before value assignment, for every single class being created.  
+- What if our class depends on some other classes existing first? A typical example would be a parent-child relationship whereby the child class needs the parent class to exist beforehand. In such case, the parent class may need to be retrieved asynchronously, and the child class is not yet ready at definition time.  
+- What if you need to run two or more different versions of the same class (all of which have the same name) on the same application without having them overwrite each other?  
+- What if you want to retrieve the current name of the class from within its own methods for better debugging capability. For example, error messages could have the class name from where they originate. Methods can have their full name in the stack-trace via Function.displayName instead of just ‘anonymous’  
+
 The answer to all the questions above is Ext.define
 
-Introducing Ext.define
-Ext.define significantly simplifies class definition code. This method takes 3 arguments:
+##Introducing Ext.define
+Ext.define significantly simplifies class definition code. This method takes 3 arguments:  
 
-Ext.define((String) className, (Object) classMembers, (Optional Function) onClassCreatedCallback);
+    Ext.define((String) className, (Object) classMembers, (Optional Function) onClassCreatedCallback);
+
 The parameters mean:
 
-className is the full class name in dot-namespaced format
-classMembers is an object represents a collection of class members in key-value pairs
-onClassCreatedCallback is an optional function callback to be invoked when all dependencies of this class are ready, and the class itself is fully created. Due to the new asynchronous nature of class creation, this callback can be useful to wrap logic that needs to be executed right after the class is defined. It is generally the place for backward-compatibility overrides.
-Following this, our Person class becomes:
+- className is the full class name in dot-namespaced format  
+- classMembers is an object represents a collection of class members in key-value pairs  
+- onClassCreatedCallback is an optional function callback to be invoked when all dependencies of this class are ready, and the class itself is fully created. Due to the new asynchronous nature of class creation, this callback can be useful to wrap logic that needs to be executed right after the class is defined. It is generally the place for backward-compatibility overrides.  
 
-Ext.define('My.sample.Person', {
-    name: 'Mr. Unknown',
- 
-    constructor: function(name) { /* … */ },
- 
-    walk: function(steps) { /* … */ }
-});
-With a tiny change and even less code, Ext.define immediately provides solutions to the challenges raised above:
+Following this, our Person class becomes:  
 
-There’s no longer a need to care about namespace object existence. Ext.define handles that automatically.
-Simply by defining the class using the string class name, we’re no longer assigning the class reference directly to a variable. That way, the whole class creation process can be asynchronous, and the actual reference to the newly created class can be assigned to the provided namespace when it’s ready, at a later time.
-Running multiple versions of the same class (also known as sandboxing) becomes trivial. The string class name can be changed to something else prior to value assignment. For example: the later-defined Ext.Button can be automatically rewritten to Ext4.Button so we can use an Ext JS 4.x button alongside an Ext JS 3.x button, without having to change a single line of code.
-All classes can now be aware of their own names. As a result, you can retrieve the class name from within any class methods. All class methods can also have their full displayName signature. This enables much better debugging.
-In short, unless you explicitly want to create anonymous classes, use Ext.define instead of new Ext.Class.
+    Ext.define('My.sample.Person', {
+        name: 'Mr. Unknown',
+     
+        constructor: function(name) { /* … */ },
+     
+        walk: function(steps) { /* … */ }
+    });
 
-Class Processors
-The Sencha Class System is built on top of processors, which are divided into two groups: pre-processors and post-processors. Although the term “pre-processors” may sound complex, class pre-processors are much simpler than you may think. They are simply a set of “hooks” that run before that class is actually created and ready to be used. Let’s walk through what’s happening behind Ext.define at a high-level:
+With a tiny change and even less code, Ext.define immediately provides solutions to the challenges raised above:  
+
+- There’s no longer a need to care about namespace object existence. Ext.define handles that automatically.   
+- Simply by defining the class using the string class name, we’re no longer assigning the class reference directly to a variable. That way, the whole class creation process can be asynchronous, and the actual reference to the newly created class can be assigned to the provided namespace when it’s ready, at a later time.
+    Running multiple versions of the same class (also known as sandboxing) becomes trivial. The string class name can be changed to something else prior to value assignment. For example: the later-defined Ext.Button can be automatically rewritten to Ext4.Button so we can use an Ext JS 4.x button alongside an Ext JS 3.x button, without having to change a single line of code.
+    All classes can now be aware of their own names. As a result, you can retrieve the class name from within any class methods. All class methods can also have their full displayName signature. This enables much better debugging.
+    In short, unless you explicitly want to create anonymous classes, use Ext.define instead of new Ext.Class.
+
+    Class Processors
+    The Sencha Class System is built on top of processors, which are divided into two groups: pre-processors and post-processors. Although the term “pre-processors” may sound complex, class pre-processors are much simpler than you may think. They are simply a set of “hooks” that run before that class is actually created and ready to be used. Let’s walk through what’s happening behind Ext.define at a high-level:
 
 Iterate through the provided classMembers object and set them to the class prototype.
 During iteration, if there’s any “special” property such as: “extend”, “mixins”, “requires”, “config”, etc., process them through their corresponding pre-processors.
