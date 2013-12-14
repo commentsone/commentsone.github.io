@@ -227,9 +227,9 @@ Overridden methods from the parent class can be invoked using this.callParent() 
 Notice that we are passing whatever arguments provided in the walk() method to the parent class walk() method. If you need to modify these arguments or pass different arguments, simply replace it with an array, for example: this.callParent([50])  
 
 ##Class Mixins
-    Mixins are common and reusable groups of features that can be shared among other classes. They are best described as “abilities”. In Ext JS and Sencha Touch, mixins are simply classes. Any class can be used as a mixin. Some good examples of mixins:
+Mixins are common and reusable groups of features that can be shared among other classes. They are best described as “abilities”. In Ext JS and Sencha Touch, mixins are simply classes. Any class can be used as a mixin. Some good examples of mixins:  
 
-    Identifiable mixin which gives any target class a getId() method to retrieve a unique ID.
+    Identifiable mixin which gives any target class a getId() method to retrieve a unique ID.  
     Observable mixin which enable events on any target class.
     Traversable mixin which bring tree-like API to any target class.
     A class can have more than one mixin. To make class A mix-in class B and C, add a mixins property when defining class A with a value of an object describing B and C.
