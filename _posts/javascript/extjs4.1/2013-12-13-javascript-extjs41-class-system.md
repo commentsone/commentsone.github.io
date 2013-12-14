@@ -33,40 +33,56 @@ Each approach has its own pros and cons, but can we have the good parts of both 
 Using consistent naming conventions throughout your code base for classes, namespaces and filenames helps keep your code organized, structured and readable.  
 
 ###1) Classes
-Class names may only contain alphanumeric characters. Numbers are permitted but are discouraged in most cases, unless they belong to a technical term. Do not use underscores, hyphens, or any other nonalphanumeric character. For example:
+Class names may only contain alphanumeric characters. Numbers are permitted but are discouraged in most cases, unless they belong to a technical term. Do not use underscores, hyphens, or any other nonalphanumeric character. For example:  
 
-MyCompany.useful_util.Debug_Toolbar is discouraged
-MyCompany.util.Base64 is acceptable
-Class names should be grouped into packages where appropriate and properly namespaced using object property dot-notation (.). At the minimum, there should be one unique top-level namespace followed by the class name. For example:
+- MyCompany.useful_util.Debug_Toolbar is discouraged  
+- MyCompany.util.Base64 is acceptable  
 
-MyCompany.data.CoolProxy
-MyCompany.Application
-The top-level namespaces and the actual class names should be in CamelCased, everything else should be all lower-cased. For example:
+Class names should be grouped into packages where appropriate and properly namespaced using object property dot-notation (.). At the minimum, there should be one unique top-level namespace followed by the class name. For example:  
 
-MyCompany.form.action.AutoLoad
-Classes that are not distributed by Sencha should never use Ext as the top-level namespace.
+- MyCompany.data.CoolProxy  
+- MyCompany.Application  
 
-Acronyms should also follow CamelCased convention listed above. For example:
+The top-level namespaces and the actual class names should be in CamelCased, everything else should be all lower-cased. For example:  
 
-Ext.data.JsonProxy instead of Ext.data.JSONProxy
-MyCompany.util.HtmlParser instead of MyCompary.parser.HTMLParser
-MyCompany.server.Http instead of MyCompany.server.HTTP
-2) Source Files
-The names of the classes map directly to the file paths in which they are stored. As a result, there must only be one class per file. For example:
+- MyCompany.form.action.AutoLoad  
 
-Ext.util.Observable is stored in path/to/src/Ext/util/Observable.js
-Ext.form.action.Submit is stored in path/to/src/Ext/form/action/Submit.js
-MyCompany.chart.axis.Numeric is stored in path/to/src/MyCompany/chart/axis/Numeric.js
-path/to/src is the directory of your application's classes. All classes should stay under this common root and should be properly namespaced for the best development, maintenance and deployment experience.
+Classes that are not distributed by Sencha should never use Ext as the top-level namespace.  
 
-3) Methods and Variables
-Similarly to class names, method and variable names may only contain alphanumeric characters. Numbers are permitted but are discouraged in most cases, unless they belong to a technical term. Do not use underscores, hyphens, or any other nonalphanumeric character.
-Method and variable names should always be in camelCased. This also applies to acronyms.
-Examples
+Acronyms should also follow CamelCased convention listed above. For example:  
 
-Acceptable method names: encodeUsingMd5() getHtml() instead of getHTML() getJsonResponse() instead of getJSONResponse() parseXmlContent() instead ofparseXMLContent()
-Acceptable variable names: var isGoodName var base64Encoder var xmlReader var httpServer
-4) Properties
+- Ext.data.JsonProxy instead of Ext.data.JSONProxy  
+- MyCompany.util.HtmlParser instead of MyCompary.parser.HTMLParser  
+- MyCompany.server.Http instead of MyCompany.server.HTTP  
+
+###2) Source Files
+The names of the classes map directly to the file paths in which they are stored. As a result, there must only be one class per file. For example:  
+
+- Ext.util.Observable is stored in path/to/src/Ext/util/Observable.js  
+- Ext.form.action.Submit is stored in path/to/src/Ext/form/action/Submit.js  
+- MyCompany.chart.axis.Numeric is stored in path/to/src/MyCompany/chart/axis/Numeric.js  
+
+path/to/src is the directory of your application's classes. All classes should stay under this common root and should be properly namespaced for the best development, maintenance and deployment experience.  
+
+###3) Methods and Variables
+Similarly to class names, method and variable names may only contain alphanumeric characters. Numbers are permitted but are discouraged in most cases, unless they belong to a technical term. Do not use underscores, hyphens, or any other nonalphanumeric character.  
+Method and variable names should always be in camelCased. This also applies to acronyms.  
+####Examples  
+
+Acceptable method names: 
+
+- encodeUsingMd5()   
+- getHtml() instead of getHTML()   
+- getJsonResponse() instead of getJSONResponse()   
+- parseXmlContent() instead ofparseXMLContent()  
+
+Acceptable variable names:   
+
+- var isGoodName   
+- var base64Encoder  
+- var xmlReader   
+- var httpServer  
+###4) Properties
 Class property names follow the exact same convention with methods and variables mentioned above, except the case when they are static constants.
 Static class properties that are constants should be all upper-cased. For example:
 
