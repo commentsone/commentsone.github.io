@@ -90,60 +90,63 @@ Static class properties that are constants should be all upper-cased. For exampl
     Ext.MessageBox.NO = "No"
     MyCompany.alien.Math.PI = "4.13"
 
-###III. Hands-on
+##III. Hands-on
 
-####1. Declaration
-#####1.1) The Old Way
-If you have ever used any previous version of Ext JS, you are certainly familiar with Ext.extend to create a class:  
+###1. Declaration
+####1.1) The Old Way
+If you have ever used any previous version of Ext JS, you are certainly familiar with Ext.extend to create a class:   
 
     var MyWindow = Ext.extend(Object, { ... });
 
-This approach is easy to follow to create a new class that inherits from another. Other than direct inheritance, however, we didn't have a fluent API for other aspects of class creation, such as configuration, statics and mixins. We will be reviewing these items in details shortly.  
-Let's take a look at another example:  
+This approach is easy to follow to create a new class that inherits from another. Other than direct inheritance, however, we didn't have a fluent API for other aspects of class creation, such as configuration, statics and mixins. We will be reviewing these items in details shortly.    
+Let's take a look at another example:    
 
     My.cool.Window = Ext.extend(Ext.Window, { ... });
 
-In this example we want to namespace our new class, and make it extend from `Ext.Window`. There are two concerns we need to address:  
+In this example we want to namespace our new class, and make it extend from `Ext.Window`. There are two concerns we need to address:    
 
 - My.cool needs to be an existing object before we can assign Window as its property  
-- Ext.Window needs to exist / loaded on the page before it can be referenced
+- Ext.Window needs to exist/loaded on the page before it can be referenced  
 
-The first item is usually solved with Ext.namespace (aliased by Ext.ns). This method recursively transverse through the object / property tree and create them if they don't exist yet. The boring part is you need to remember adding them above Ext.extend all the time.  
+The first item is usually solved with `Ext.namespace` (aliased by `Ext.ns`). This method recursively transverse through the object/property tree and create them if they don't exist yet. The boring part is you need to remember adding them above `Ext.extend` all the time.   
 
     Ext.ns('My.cool');
     My.cool.Window = Ext.extend(Ext.Window, { ... });
 
-The second issue, however, is not easy to address because Ext.Window might depend on many other classes that it directly / indirectly inherits from, and in turn, these dependencies might depend on other classes to exist. For that reason, applications written before Ext JS 4 usually include the whole library in the form of ext-all.js even though they might only need a small portion of the framework.
+The second issue, however, is not easy to address because Ext.Window might depend on many other classes that it directly/indirectly inherits from, and in turn, these dependencies might depend on other classes to exist. For that reason, applications written before Ext JS 4 usually include the whole library in the form of ext-all.js even though they might only need a small portion of the framework.  
 
-1.2) The New Way
-Ext JS 4 eliminates all those drawbacks with just one single method you need to remember for class creation: Ext.define. Its basic syntax is as follows:
+####1.2) The New Way
+Ext JS 4 eliminates all those drawbacks with just one single method you need to remember for class creation: `Ext.define`. Its basic syntax is as follows:  
 
-Ext.define(className, members, onClassCreated);
-className: The class name
-members is an object represents a collection of class members in key-value pairs
-onClassCreated is an optional function callback to be invoked when all dependencies of this class are ready, and the class itself is fully created. Due to the new asynchronous nature of class creation, this callback can be useful in many situations. These will be discussed further in Section IV
-Example:
+    Ext.define(className, members, onClassCreated);
 
-Ext.define('My.sample.Person', {
-    name: 'Unknown',
+- className: The class name  
+- members is an object represents a collection of class members in key-value pairs  
+- onClassCreated is an optional function callback to be invoked when all dependencies of this class are ready, and the class itself is fully created. Due to the new asynchronous nature of class creation, this callback can be useful in many situations. These will be discussed further in Section IV  
 
-    constructor: function(name) {
-        if (name) {
-            this.name = name;
+Example:  
+
+    Ext.define('My.sample.Person', {
+        name: 'Unknown',
+
+        constructor: function(name) {
+            if (name) {
+                this.name = name;
+            }
+        },
+
+        eat: function(foodType) {
+            alert(this.name + " is eating: " + foodType);
         }
-    },
+    });
 
-    eat: function(foodType) {
-        alert(this.name + " is eating: " + foodType);
-    }
-});
+    var aaron = Ext.create('My.sample.Person', 'Aaron');
+        aaron.eat("Salad"); // alert("Aaron is eating: Salad");
 
-var aaron = Ext.create('My.sample.Person', 'Aaron');
-    aaron.eat("Salad"); // alert("Aaron is eating: Salad");
-Note we created a new instance of My.sample.Person using the Ext.create() method. We could have used the new keyword (new My.sample.Person()). However it is recommended to get in the habit of always using Ext.create since it allows you to take advantage of dynamic loading. For more info on dynamic loading see the Getting Started guide
+Note we created a new instance of `My.sample.Person` using the `Ext.create()` method. We could have used the new keyword (`new My.sample.Person()`). However it is recommended to get in the habit of always using `Ext.create` since it allows you to take advantage of dynamic loading. For more info on dynamic loading see the Getting Started guide  
 
 ###2. Configuration
-In Ext JS 4, we introduce a dedicated config property that gets processed by the powerful Ext.Class pre-processors before the class is created. Features include:  
+In Ext JS 4, we introduce a dedicated config property that gets processed by the powerful `Ext.Class` pre-processors before the class is created. Features include:    
 
 - Configurations are completely encapsulated from other class members  
 - Getter and setter, methods for every config property are automatically generated into the class' prototype during class creation if the class does not have these methods already defined.  
@@ -151,79 +154,80 @@ In Ext JS 4, we introduce a dedicated config property that gets processed by the
 
 Here's an example:  
 
-Ext.define('My.own.Window', {
-   /** @readonly */
-    isWindow: true,
+    Ext.define('My.own.Window', {
+       /** @readonly */
+        isWindow: true,
 
-    config: {
-        title: 'Title Here',
+        config: {
+            title: 'Title Here',
 
-        bottomBar: {
-            enabled: true,
-            height: 50,
-            resizable: false
-        }
-    },
+            bottomBar: {
+                enabled: true,
+                height: 50,
+                resizable: false
+            }
+        },
 
-    constructor: function(config) {
-        this.initConfig(config);
-    },
+        constructor: function(config) {
+            this.initConfig(config);
+        },
 
-    applyTitle: function(title) {
-        if (!Ext.isString(title) || title.length === 0) {
-            alert('Error: Title must be a valid non-empty string');
-        }
-        else {
-            return title;
-        }
-    },
-
-    applyBottomBar: function(bottomBar) {
-        if (bottomBar && bottomBar.enabled) {
-            if (!this.bottomBar) {
-                return Ext.create('My.own.WindowBottomBar', bottomBar);
+        applyTitle: function(title) {
+            if (!Ext.isString(title) || title.length === 0) {
+                alert('Error: Title must be a valid non-empty string');
             }
             else {
-                this.bottomBar.setConfig(bottomBar);
+                return title;
+            }
+        },
+
+        applyBottomBar: function(bottomBar) {
+            if (bottomBar && bottomBar.enabled) {
+                if (!this.bottomBar) {
+                    return Ext.create('My.own.WindowBottomBar', bottomBar);
+                }
+                else {
+                    this.bottomBar.setConfig(bottomBar);
+                }
             }
         }
-    }
-});
+    });
+
 And here's an example of how it can be used:
 
-var myWindow = Ext.create('My.own.Window', {
-    title: 'Hello World',
-    bottomBar: {
-        height: 60
-    }
-});
-
-alert(myWindow.getTitle()); // alerts "Hello World"
-
-myWindow.setTitle('Something New');
-
-alert(myWindow.getTitle()); // alerts "Something New"
-
-myWindow.setTitle(null); // alerts "Error: Title must be a valid non-empty string"
-
-myWindow.setBottomBar({ height: 100 }); // Bottom bar's height is changed to 100
-3. Statics
-Static members can be defined using the statics config
-
-Ext.define('Computer', {
-    statics: {
-        instanceCount: 0,
-        factory: function(brand) {
-            // 'this' in static methods refer to the class itself
-            return new this({brand: brand});
+    var myWindow = Ext.create('My.own.Window', {
+        title: 'Hello World',
+        bottomBar: {
+            height: 60
         }
-    },
+    });
 
-    config: {
-        brand: null
-    },
+    alert(myWindow.getTitle()); // alerts "Hello World"
 
-    constructor: function(config) {
+    myWindow.setTitle('Something New');
+
+    alert(myWindow.getTitle()); // alerts "Something New"
+
+    myWindow.setTitle(null); // alerts "Error: Title must be a valid non-empty string"
+
+    myWindow.setBottomBar({ height: 100 }); // Bottom bar's height is changed to 100
+    3. Statics
+    Static members can be defined using the statics config
+
+    Ext.define('Computer', {
+        statics: {
+            instanceCount: 0,
+            factory: function(brand) {
+                // 'this' in static methods refer to the class itself
+                return new this({brand: brand});
+            }
+        },
+
+        config: {
+            brand: null
+        },
+
+        constructor: function(config) {
         this.initConfig(config);
 
         // the 'self' property of an instance refers to its class
