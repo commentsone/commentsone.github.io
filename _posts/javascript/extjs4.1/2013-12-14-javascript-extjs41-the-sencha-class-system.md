@@ -7,7 +7,7 @@ tags: []
 ---
 {% include JB/setup %}
 [FROM](http://www.sencha.com/learn/sencha-class-system)  
-The Sencha Class System was first introduced in Ext JS 4.0 and was a major step forward in making it easy to build object oriented JavaScript code. As a core part of the Sencha JavaScript platform, it’s now a shared component between Ext JS and Sencha Touch 2.
+The Sencha Class System was first introduced in Ext JS 4.0 and was a major step forward in making it easy to build object oriented JavaScript code. As a core part of the Sencha JavaScript platform, it’s now a shared component between Ext JS and Sencha Touch 2.  
 
 Ext JS and Sencha Touch 2 use the class system internally to manage dependencies, make code more reusable as well as provide a rich set of features that are commonly found in other class-based programming languages. Developers writing code using Ext JS 4 and Touch 2 can leverage the class system to use the built-in APIs in the frameworks, as well as in their own code to create well structured object oriented JavaScript.
 
