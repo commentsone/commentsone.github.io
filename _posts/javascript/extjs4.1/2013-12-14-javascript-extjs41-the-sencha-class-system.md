@@ -132,47 +132,51 @@ In short, unless you explicitly want to create anonymous classes, use Ext.define
 ##Class Processors
 The Sencha Class System is built on top of processors, which are divided into two groups: pre-processors and post-processors. Although the term “pre-processors” may sound complex, class pre-processors are much simpler than you may think. They are simply a set of “hooks” that run before that class is actually created and ready to be used. Let’s walk through what’s happening behind Ext.define at a high-level:  
 
-Iterate through the provided classMembers object and set them to the class prototype.
-During iteration, if there’s any “special” property such as: “extend”, “mixins”, “requires”, “config”, etc., process them through their corresponding pre-processors.
-That said, when you define the class, in the classMembers object, if you provide:
+- Iterate through the provided classMembers object and set them to the class prototype.  
+- During iteration, if there’s any “special” property such as: “extend”, “mixins”, “requires”, “config”, etc., process them through their corresponding pre-processors.  
 
-an “extend” property, the “extend” pre-processor will handle inheritance for that class.
-a “mixins” property, the “mixins” pre-processor will mix those other classes into the current class
-a “config” property, the “config” pre-processor will automatically generate setters and getters methods for each config item
+That said, when you define the class, in the classMembers object, if you provide:  
+
+- an “extend” property, the “extend” pre-processor will handle inheritance for that class.  
+- a “mixins” property, the “mixins” pre-processor will mix those other classes into the current class  
+- a “config” property, the “config” pre-processor will automatically generate setters and getters methods for each config item  
 a “requires” property, the registered Ext.Loader’s pre-processor will automatically load these dependencies prior to creating the class.
-a “statics” property, the “statics” pre-processor will make all properties of that object static members of the class
-Similarly, class “post-processors” are hooks that execute as soon as the class is ready. Some useful “post-processors” introduced in Ext JS 4 are:
+- a “statics” property, the “statics” pre-processor will make all properties of that object static members of the class  
 
-“singleton”, which creates a single instance of that class right after it’s created.
-“alternateClassName”, which aliases that class to other names, either for convenience or backwards compatibility
-“alias”, which generates xtypes and mapping for convenient shorthands.
-With this design, the new class system is not only rich in features but also highly extensible. You can create your own “hooks” with ease and tap into any point of the class creation process.
+Similarly, class “post-processors” are hooks that execute as soon as the class is ready. Some useful “post-processors” introduced in Ext JS 4 are:  
 
-Pre-processors
-Class Statics
-Static members of a class are declared inside the special statics object property. The scope (this) of static methods defaults to a reference to the class itself. For example:
+- “singleton”, which creates a single instance of that class right after it’s created.  
+- “alternateClassName”, which aliases that class to other names, either for convenience or backwards compatibility  
+- “alias”, which generates xtypes and mapping for convenient shorthands.  
 
-// My/sample/Point.js
-Ext.define('My.sample.Point', {
-    statics: {
-        fromEvent: function(e) {
-            return new this(e.pageX, e.pageY);
+With this design, the new class system is not only rich in features but also highly extensible. You can create your own “hooks” with ease and tap into any point of the class creation process.  
+
+##Pre-processors
+###Class Statics
+Static members of a class are declared inside the special statics object property. The scope (this) of static methods defaults to a reference to the class itself. For example:  
+
+    // My/sample/Point.js
+    Ext.define('My.sample.Point', {
+        statics: {
+            fromEvent: function(e) {
+                return new this(e.pageX, e.pageY);
+            }
+        },
+ 
+        x: 0,
+ 
+        y: 0,
+ 
+        constructor: function(x, y) {
+            this.x = x;
+            this.y = y;
         }
-    },
+    });
  
-    x: 0,
- 
-    y: 0,
- 
-    constructor: function(x, y) {
-        this.x = x;
-        this.y = y;
-    }
-});
- 
-// app.js
-/* … */
-var point = My.sample.Point.fromEvent(e);
+    // app.js
+    /* … */
+    var point = My.sample.Point.fromEvent(e);
+
 Class Inheritance
 To make class A inherit from class B, add an extend property with value 'B' when defining class A.
 
