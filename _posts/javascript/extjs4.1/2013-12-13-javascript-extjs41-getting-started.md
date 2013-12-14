@@ -55,11 +55,12 @@ Although not mandatory, all suggestions listed below should be considered as bes
         - index.html  
 
 appname is a directory that contains all your application's source files  
-app contains all your classes, the naming style of which should follow the convention listed in the Class System guide
-extjs contains the Ext JS 4 SDK files
+app contains all your classes, the naming style of which should follow the convention listed in the Class System guide  
+extjs contains the Ext JS 4 SDK files  
 resources contains additional CSS and image files which are responsible for the look and feel of the application, as well as other static resources (XML, JSON, etc.)
-index.html is the entry-point HTML document
-app.js contains your application's logic
+index.html is the entry-point HTML document  
+app.js contains your application's logic  
+
 Don't worry about creating all those directories at the moment. For now lets just focus on creating the minimum amount of code necessary to get an Ext JS application up and running. To do this we'll create a basic "hello world" Ext JS application called "Hello Ext". First, create the following directory and files in your web root directory.
 
 - helloext
@@ -69,16 +70,17 @@ Then unzip the Ext JS 4 SDK to a directory named extjs in the helloext directory
 
 A typical Ext JS application is contained in a single HTML document - index.html. Open index.html and insert the following html code:
 
-<html>
-<head>
-    <title>Hello Ext</title>
+    <html>
+    <head>
+        <title>Hello Ext</title>
 
-    <link rel="stylesheet" type="text/css" href="extjs/resources/css/ext-all.css">
-    <script type="text/javascript" src="extjs/ext-debug.js"></script>
-    <script type="text/javascript" src="app.js"></script>
-</head>
-<body></body>
-</html>
+        <link rel="stylesheet" type="text/css" href="extjs/resources/css/ext-all.css">
+        <script type="text/javascript" src="extjs/ext-debug.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+    </head>
+    <body></body>
+    </html>
+
 extjs/resources/css/ext-all.css contains all styling information needed for the whole framework
 extjs/ext-debug.js contains a minimal set of Ext JS 4 Core library classes
 app.js will contain your application code
