@@ -72,26 +72,30 @@ Static class properties that are constants should be all upper-cased. For exampl
 Ext.MessageBox.YES = "Yes"
 Ext.MessageBox.NO = "No"
 MyCompany.alien.Math.PI = "4.13"
-III. Hands-on
 
-1. Declaration
-1.1) The Old Way
-If you have ever used any previous version of Ext JS, you are certainly familiar with Ext.extend to create a class:
+###III. Hands-on
 
-var MyWindow = Ext.extend(Object, { ... });
-This approach is easy to follow to create a new class that inherits from another. Other than direct inheritance, however, we didn't have a fluent API for other aspects of class creation, such as configuration, statics and mixins. We will be reviewing these items in details shortly.
+####1. Declaration
+#####1.1) The Old Way
+If you have ever used any previous version of Ext JS, you are certainly familiar with Ext.extend to create a class:  
 
-Let's take a look at another example:
+    var MyWindow = Ext.extend(Object, { ... });
 
-My.cool.Window = Ext.extend(Ext.Window, { ... });
-In this example we want to namespace our new class, and make it extend from Ext.Window. There are two concerns we need to address:
+This approach is easy to follow to create a new class that inherits from another. Other than direct inheritance, however, we didn't have a fluent API for other aspects of class creation, such as configuration, statics and mixins. We will be reviewing these items in details shortly.  
+Let's take a look at another example:  
 
-My.cool needs to be an existing object before we can assign Window as its property
-Ext.Window needs to exist / loaded on the page before it can be referenced
-The first item is usually solved with Ext.namespace (aliased by Ext.ns). This method recursively transverse through the object / property tree and create them if they don't exist yet. The boring part is you need to remember adding them above Ext.extend all the time.
+    My.cool.Window = Ext.extend(Ext.Window, { ... });
 
-Ext.ns('My.cool');
-My.cool.Window = Ext.extend(Ext.Window, { ... });
+In this example we want to namespace our new class, and make it extend from `Ext.Window`. There are two concerns we need to address:  
+
+- My.cool needs to be an existing object before we can assign Window as its property  
+- Ext.Window needs to exist / loaded on the page before it can be referenced
+
+The first item is usually solved with Ext.namespace (aliased by Ext.ns). This method recursively transverse through the object / property tree and create them if they don't exist yet. The boring part is you need to remember adding them above Ext.extend all the time.  
+
+    Ext.ns('My.cool');
+    My.cool.Window = Ext.extend(Ext.Window, { ... });
+
 The second issue, however, is not easy to address because Ext.Window might depend on many other classes that it directly / indirectly inherits from, and in turn, these dependencies might depend on other classes to exist. For that reason, applications written before Ext JS 4 usually include the whole library in the form of ext-all.js even though they might only need a small portion of the framework.
 
 1.2) The New Way
