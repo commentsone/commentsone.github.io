@@ -193,7 +193,7 @@ Here's an example:
         }
     });
 
-And here's an example of how it can be used:
+And here's an example of how it can be used:  
 
     var myWindow = Ext.create('My.own.Window', {
         title: 'Hello World',
@@ -211,8 +211,9 @@ And here's an example of how it can be used:
     myWindow.setTitle(null); // alerts "Error: Title must be a valid non-empty string"
 
     myWindow.setBottomBar({ height: 100 }); // Bottom bar's height is changed to 100
-    3. Statics
-    Static members can be defined using the statics config
+
+3. Statics
+Static members can be defined using the statics config  
 
     Ext.define('Computer', {
         statics: {
@@ -233,27 +234,28 @@ And here's an example of how it can be used:
         // the 'self' property of an instance refers to its class
         this.self.instanceCount ++;
     }
-});
+    });
 
-var dellComputer = Computer.factory('Dell');
-var appleComputer = Computer.factory('Mac');
+    var dellComputer = Computer.factory('Dell');
+    var appleComputer = Computer.factory('Mac');
 
-alert(appleComputer.getBrand()); // using the auto-generated getter to get the value of a config property. Alerts "Mac"
+    alert(appleComputer.getBrand()); // using the auto-generated getter to get the value of a config property. Alerts "Mac"
 
-alert(Computer.instanceCount); // Alerts "2"
-IV. Errors Handling & Debugging
+    alert(Computer.instanceCount); // Alerts "2"
+
+##IV. Errors Handling & Debugging
 
 Ext JS 4 includes some useful features that will help you with debugging and error handling.
 
-You can use Ext.getDisplayName() to get the display name of any method. This is especially useful for throwing errors that have the class name and method name in their description:
+    You can use Ext.getDisplayName() to get the display name of any method. This is especially useful for throwing errors that have the class name and method name in their description:
 
-  throw new Error('['+ Ext.getDisplayName(arguments.callee) +'] Some message here');
-When an error is thrown in any method of any class defined using Ext.define(), you should see the method and class names in the call stack if you are using a WebKit based browser (Chrome or Safari). For example, here is what it would look like in Chrome:
-Call Stack
+    throw new Error('['+ Ext.getDisplayName(arguments.callee) +'] Some message here');
+    When an error is thrown in any method of any class defined using Ext.define(), you should see the method and class names in the call stack if you are using a WebKit based browser (Chrome or Safari). For example, here is what it would look like in Chrome:
+    Call Stack
 
-See Also
+    See Also
 
-Dynamic Loading and the New Class System
-Classes in Ext JS 4: Under the Hood
-The Class Definition Pipeline
+    Dynamic Loading and the New Class System
+    Classes in Ext JS 4: Under the Hood
+    The Class Definition Pipeline
 
