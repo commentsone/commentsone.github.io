@@ -172,17 +172,20 @@ From here you only need to run a couple of simple commands. The first one genera
 
     sencha create jsb -a index.html -p app.jsb3
 
-For applications built on top of a dynamic server-side language like PHP, Ruby, ASP, etc., you can simply replace index.html with the actual URL of your application:
+For applications built on top of a dynamic server-side language like PHP, Ruby, ASP, etc., you can simply replace index.html with the actual URL of your application:  
 
     sencha create jsb -a http://localhost/helloext/index.html -p app.jsb3
-    This scans your index.html file for all framework and application files that are actually used by the app, and then creates a JSB file called app.jsb3. Generating the JSB3 first gives us a chance to modify the generated app.jsb3 before building - this can be helpful if you have custom resources to copy, but in most cases we can immediately proceed to build the application with the second command:
+
+This scans your index.html file for all framework and application files that are actually used by the app, and then creates a JSB file called app.jsb3. Generating the JSB3 first gives us a chance to modify the generated app.jsb3 before building - this can be helpful if you have custom resources to copy, but in most cases we can immediately proceed to build the application with the second command:  
 
     sencha build -p app.jsb3 -d .
-    This creates 2 files based on the JSB3 file:
+    
+This creates 2 files based on the JSB3 file:  
 
-    all-classes.js - This file contains all of your application's classes. It is not minified so is very useful for debugging problems with your built application. In our example this file is empty because our "Hello Ext" application does not contain any classes.
-    app-all.js - This file is a minimized build of your application plus all of the Ext JS classes required to run it. It is the minified and production-ready version of all-classes.js + app.js.
-    An Ext JS application will need a separate index.html for the production version of the app. You will typically handle this in your build process or server side logic, but for now let's just create a new file in the helloext directory called index-prod.html:
+- all-classes.js - This file contains all of your application's classes. It is not minified so is very useful for debugging problems with your built application. In our example this file is empty because our "Hello Ext" application does not contain any classes.   
+- app-all.js - This file is a minimized build of your application plus all of the Ext JS classes required to run it. It is the minified and production-ready version of all-classes.js + app.js.  
+
+An Ext JS application will need a separate index.html for the production version of the app. You will typically handle this in your build process or server side logic, but for now let's just create a new file in the helloext directory called index-prod.html:  
 
     <html>
     <head>
@@ -194,9 +197,10 @@ For applications built on top of a dynamic server-side language like PHP, Ruby, 
     </head>
     <body></body>
     </html>
-    Notice that ext-debug.js has been replaced with ext.js, and app.js has been replaced with app-all.js. If you navigate to http://localhost/helloext/index-prod.html in your browser, you should see the production version of the "Hello Ext" application.
 
-    4. Further Reading
+Notice that ext-debug.js has been replaced with ext.js, and app.js has been replaced with app-all.js. If you navigate to http://localhost/helloext/index-prod.html in your browser, you should see the production version of the "Hello Ext" application.  
+
+##4. Further Reading
 
     Class System
     MVC Application Architecture
