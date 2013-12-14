@@ -14,24 +14,25 @@ This manual is intended for any developer who wants to create new or extend exis
 - Section II: "Naming Conventions" discusses the best practices for naming classes, methods, properties, variables and files.  
 - Section III: "Hands-on" provides detailed step-by-step code examples    
 - Section IV: "Errors Handling & Debugging" gives useful tips & tricks on how to deal with exceptions  
-I. Overview
+##I. Overview
 
-Ext JS 4 ships with more than 300 classes. We have a huge community of more than 200,000 developers to date, coming from various programming backgrounds all over the world. At that scale of a framework, we face a big challange of providing a common code architecture that is:
+Ext JS 4 ships with more than 300 classes. We have a huge community of more than 200,000 developers to date, coming from various programming backgrounds all over the world. At that scale of a framework, we face a big challange of providing a common code architecture that is:  
 
-familiar and simple to learn
-fast to develop, easy to debug, painless to deploy
-well-organized, extensible and maintainable
-JavaScript is a classless, prototype-oriented language. Hence by nature, one of the language's most powerful features is flexibility. It can get the same job done by many different ways, in many different coding styles and techniques. That feature, however, comes with the cost of unpredictability. Without a unified structure, JavaScript code can be really hard to understand, maintain and re-use.
+- familiar and simple to learn  
+- fast to develop, easy to debug, painless to deploy  
+- well-organized, extensible and maintainable   
 
-Class-based programming, on the other hand, still stays as the most popular model of OOP. Class-based languages usually require strong-typing, provide encapsulation, and come with standard coding convention. By generally making developers adhere to a large set of principles, written code is more likely to be predictable, extensible and scalable over time. However, they don't have the same dynamic capability found in such language as JavaScript.
+JavaScript is a classless, prototype-oriented language. Hence by nature, one of the language's most powerful features is flexibility. It can get the same job done by many different ways, in many different coding styles and techniques. That feature, however, comes with the cost of unpredictability. Without a unified structure, JavaScript code can be really hard to understand, maintain and re-use.  
 
-Each approach has its own pros and cons, but can we have the good parts of both at the same time while concealing the bad parts? The answer is yes, and we've implemented the solution in Ext JS 4.
+Class-based programming, on the other hand, still stays as the most popular model of OOP. Class-based languages usually require strong-typing, provide encapsulation, and come with standard coding convention. By generally making developers adhere to a large set of principles, written code is more likely to be predictable, extensible and scalable over time. However, they don't have the same dynamic capability found in such language as JavaScript.   
 
-II. Naming Conventions
+Each approach has its own pros and cons, but can we have the good parts of both at the same time while concealing the bad parts? The answer is yes, and we've implemented the solution in Ext JS 4.  
 
-Using consistent naming conventions throughout your code base for classes, namespaces and filenames helps keep your code organized, structured and readable.
+##II. Naming Conventions
 
-1) Classes
+Using consistent naming conventions throughout your code base for classes, namespaces and filenames helps keep your code organized, structured and readable.  
+
+###1) Classes
 Class names may only contain alphanumeric characters. Numbers are permitted but are discouraged in most cases, unless they belong to a technical term. Do not use underscores, hyphens, or any other nonalphanumeric character. For example:
 
 MyCompany.useful_util.Debug_Toolbar is discouraged
