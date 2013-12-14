@@ -6,17 +6,9 @@ category: "javascript"
 tags: [javascript,extj4.1]
 ---
 {% include JB/setup %}
-Getting Started
+##Getting Started
 
-Contents
-
-1. Requirements
-2. Application Structure
-3. Deployment
-4. Further Reading
-1. Requirements
-
-1.1 Web Browsers
+##1.1 Web Browsers
 Ext JS 4 supports all major web browsers, from Internet Explorer 6 to the latest version of Google Chrome. During development, however, we recommend that you choose one of the following browsers for the best debugging experience:
 
 Google Chrome 10+
