@@ -8,20 +8,21 @@ tags: [javascript,extj4.1]
 {% include JB/setup %}
 ##Getting Started
 
-##1.1 Web Browsers
-Ext JS 4 supports all major web browsers, from Internet Explorer 6 to the latest version of Google Chrome. During development, however, we recommend that you choose one of the following browsers for the best debugging experience:
+###1.1 Web Browsers
+Ext JS 4 supports all major web browsers, from Internet Explorer 6 to the latest version of Google Chrome. During development, however, we recommend that you choose one of the following browsers for the best debugging experience:  
 
-Google Chrome 10+
-Apple Safari 5+
-Mozilla Firefox 4+ with the Firebug Web Development Plugin
-This tutorial assumes you are using the latest version of Google Chrome. If you don't already have Chrome take a moment to install it, and familiarize yourself with the Chrome Developer Tools.
+- Google Chrome 10+  
+- Apple Safari 5+  
+- Mozilla Firefox 4+ with the Firebug Web Development Plugin  
 
-1.2 Web Server
-Even though a local web server is not a requirement to use Ext JS 4, it is still highly recommended that you develop with one, since XHR over local file:// protocol has cross origin restriction on most browsers. If you don't already have a local web server it is recommended that you download and install Apache HTTP Server.
+This tutorial assumes you are using the latest version of Google Chrome. If you don't already have Chrome take a moment to install it, and familiarize yourself with the Chrome Developer Tools.  
 
-Instructions for installing Apache on Windows
-Instructions for installing Apache on Linux
-Mac OS X comes with a build in apache installation which you can enable by navigating to "System Preferences > Sharing" and checking the box next to "Web Sharing".
+###1.2 Web Server
+Even though a local web server is not a requirement to use Ext JS 4, it is still highly recommended that you develop with one, since XHR over local file:// protocol has cross origin restriction on most browsers. If you don't already have a local web server it is recommended that you download and install Apache HTTP Server.  
+
+- Instructions for installing Apache on Windows  
+- Instructions for installing Apache on Linux  
+- Mac OS X comes with a build in apache installation which you can enable by navigating to "System Preferences > Sharing" and checking the box next to "Web Sharing".  
 Once you have installed or enabled Apache you can verify that it is running by navigating to localhost in your browser. You should see a startup page indicating that Apache HTTP Server was installed successfully and is running.
 
 1.3. Ext JS 4 SDK
