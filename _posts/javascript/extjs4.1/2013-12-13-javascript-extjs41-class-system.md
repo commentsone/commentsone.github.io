@@ -6,14 +6,14 @@ category: "javascript"
 tags: [javascript,extjs4.1]
 ---
 {% include JB/setup %}
-For the first time in its history, Ext JS went through a huge refactoring from the ground up with the new class system. The new architecture stands behind almost every single class written in Ext JS 4.x, hence it's important to understand it well before you start coding.
+For the first time in its history, Ext JS went through a huge refactoring from the ground up with the new class system. The new architecture stands behind almost every single class written in Ext JS 4.x, hence it's important to understand it well before you start coding.  
 
-This manual is intended for any developer who wants to create new or extend existing classes in Ext JS 4.x. It's divided into 4 sections:
+This manual is intended for any developer who wants to create new or extend existing classes in Ext JS 4.x. It's divided into 4 sections:  
 
-Section I: "Overview" explains the need for a robust class system
-Section II: "Naming Conventions" discusses the best practices for naming classes, methods, properties, variables and files.
-Section III: "Hands-on" provides detailed step-by-step code examples
-Section IV: "Errors Handling & Debugging" gives useful tips & tricks on how to deal with exceptions
+- Section I: "Overview" explains the need for a robust class system  
+- Section II: "Naming Conventions" discusses the best practices for naming classes, methods, properties, variables and files.  
+- Section III: "Hands-on" provides detailed step-by-step code examples    
+- Section IV: "Errors Handling & Debugging" gives useful tips & tricks on how to deal with exceptions  
 I. Overview
 
 Ext JS 4 ships with more than 300 classes. We have a huge community of more than 200,000 developers to date, coming from various programming backgrounds all over the world. At that scale of a framework, we face a big challange of providing a common code architecture that is:
