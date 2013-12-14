@@ -23,35 +23,38 @@ Even though a local web server is not a requirement to use Ext JS 4, it is still
 - Instructions for installing Apache on Windows  
 - Instructions for installing Apache on Linux  
 - Mac OS X comes with a build in apache installation which you can enable by navigating to "System Preferences > Sharing" and checking the box next to "Web Sharing".  
-Once you have installed or enabled Apache you can verify that it is running by navigating to localhost in your browser. You should see a startup page indicating that Apache HTTP Server was installed successfully and is running.
 
-1.3. Ext JS 4 SDK
-Download Ext JS 4 SDK. Unzip the package to a new directory called "extjs" within your web root directory. If you aren't sure where your web root directory is, consult the docs for your web server. Your web root directory may vary depending on your operating system, but if you are using Apache it is typically located at:
+Once you have installed or enabled Apache you can verify that it is running by navigating to localhost in your browser. You should see a startup page indicating that Apache HTTP Server was installed successfully and is running.  
 
-Windows - "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs"
-Linux - "/var/www/"
-Mac OS X - "/Library/WebServer/Documents/"
-Once you have finished installing Apache navigate to http://localhost/extjs/index.html in your browser. If an Ext JS 4 welcome page appears, you are all set.
+###1.3. Ext JS 4 SDK
+Download Ext JS 4 SDK. Unzip the package to a new directory called "extjs" within your web root directory. If you aren't sure where your web root directory is, consult the docs for your web server. Your web root directory may vary depending on your operating system, but if you are using Apache it is typically located at:  
 
-2. Application Structure
+- Windows - "C:\Program Files\Apache Software Foundation\Apache2.2\htdocs"  
+- Linux - "/var/www/"  
+- Mac OS X - "/Library/WebServer/Documents/"  
 
-2.1 Basic Structure
-Although not mandatory, all suggestions listed below should be considered as best-practice guidelines to keep your application well organized, extensible and maintainable. The following is the recommended directory structure for an Ext JS application:
+Once you have finished installing Apache navigate to http://localhost/extjs/index.html in your browser. If an Ext JS 4 welcome page appears, you are all set.  
 
-- appname
-    - app
-        - namespace
-            - Class1.js
-            - Class2.js
+###2. Application Structure
+
+####2.1 Basic Structure
+Although not mandatory, all suggestions listed below should be considered as best-practice guidelines to keep your application well organized, extensible and maintainable. The following is the recommended directory structure for an Ext JS application:  
+
+    - appname
+        - app
+            - namespace
+                - Class1.js
+                - Class2.js
+                - ...
+        - extjs
+        - resources
+            - css
+            - images
             - ...
-    - extjs
-    - resources
-        - css
-        - images
-        - ...
-    - app.js
-    - index.html
-appname is a directory that contains all your application's source files
+        - app.js
+        - index.html  
+
+appname is a directory that contains all your application's source files  
 app contains all your classes, the naming style of which should follow the convention listed in the Class System guide
 extjs contains the Ext JS 4 SDK files
 resources contains additional CSS and image files which are responsible for the look and feel of the application, as well as other static resources (XML, JSON, etc.)
