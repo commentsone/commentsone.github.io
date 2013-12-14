@@ -245,12 +245,13 @@ Static members can be defined using the statics config
 
 ##IV. Errors Handling & Debugging
 
-Ext JS 4 includes some useful features that will help you with debugging and error handling.
+Ext JS 4 includes some useful features that will help you with debugging and error handling.  
 
-    You can use Ext.getDisplayName() to get the display name of any method. This is especially useful for throwing errors that have the class name and method name in their description:
+You can use Ext.getDisplayName() to get the display name of any method. This is especially useful for throwing errors that have the class name and method name in their description:  
 
     throw new Error('['+ Ext.getDisplayName(arguments.callee) +'] Some message here');
-    When an error is thrown in any method of any class defined using Ext.define(), you should see the method and class names in the call stack if you are using a WebKit based browser (Chrome or Safari). For example, here is what it would look like in Chrome:
+
+When an error is thrown in any method of any class defined using Ext.define(), you should see the method and class names in the call stack if you are using a WebKit based browser (Chrome or Safari). For example, here is what it would look like in Chrome:  
     Call Stack
 
     See Also
