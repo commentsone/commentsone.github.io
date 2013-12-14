@@ -83,12 +83,12 @@ Acceptable variable names:
 - var xmlReader   
 - var httpServer  
 ###4) Properties
-Class property names follow the exact same convention with methods and variables mentioned above, except the case when they are static constants.
-Static class properties that are constants should be all upper-cased. For example:
+Class property names follow the exact same convention with methods and variables mentioned above, except the case when they are static constants.  
+Static class properties that are constants should be all upper-cased. For example:  
 
-Ext.MessageBox.YES = "Yes"
-Ext.MessageBox.NO = "No"
-MyCompany.alien.Math.PI = "4.13"
+    Ext.MessageBox.YES = "Yes"
+    Ext.MessageBox.NO = "No"
+    MyCompany.alien.Math.PI = "4.13"
 
 ###III. Hands-on
 
