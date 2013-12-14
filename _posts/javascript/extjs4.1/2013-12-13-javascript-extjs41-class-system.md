@@ -125,13 +125,14 @@ var aaron = Ext.create('My.sample.Person', 'Aaron');
     aaron.eat("Salad"); // alert("Aaron is eating: Salad");
 Note we created a new instance of My.sample.Person using the Ext.create() method. We could have used the new keyword (new My.sample.Person()). However it is recommended to get in the habit of always using Ext.create since it allows you to take advantage of dynamic loading. For more info on dynamic loading see the Getting Started guide
 
-2. Configuration
-In Ext JS 4, we introduce a dedicated config property that gets processed by the powerful Ext.Class pre-processors before the class is created. Features include:
+###2. Configuration
+In Ext JS 4, we introduce a dedicated config property that gets processed by the powerful Ext.Class pre-processors before the class is created. Features include:  
 
-Configurations are completely encapsulated from other class members
-Getter and setter, methods for every config property are automatically generated into the class' prototype during class creation if the class does not have these methods already defined.
-An apply method is also generated for every config property. The auto-generated setter method calls the apply method internally before setting the value. Override the apply method for a config property if you need to run custom logic before setting the value. If apply does not return a value then the setter will not set the value. For an example see applyTitle below.
-Here's an example:
+- Configurations are completely encapsulated from other class members  
+- Getter and setter, methods for every config property are automatically generated into the class' prototype during class creation if the class does not have these methods already defined.  
+- An apply method is also generated for every config property. The auto-generated setter method calls the apply method internally before setting the value. Override the apply method for a config property if you need to run custom logic before setting the value. If apply does not return a value then the setter will not set the value. For an example see applyTitle below.  
+
+Here's an example:  
 
 Ext.define('My.own.Window', {
    /** @readonly */
